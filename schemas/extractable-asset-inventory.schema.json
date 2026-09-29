@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ut4recon.local/schemas/extractable-asset-inventory.schema.json",
+  "title": "UT4 Recon extractable asset inventory",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "profile", "count", "objects"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "profile": { "type": "string", "minLength": 1 },
+    "count": { "type": "integer", "minimum": 0 },
+    "objects": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["packagePath", "id", "objectPath", "kind", "editableProperties"],
+        "properties": {
+          "packagePath": { "type": "string", "minLength": 1 },
+          "id": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+          "objectPath": { "type": "string", "minLength": 1 },
+          "classPath": { "type": ["string", "null"] },
+          "kind": { "enum": ["propertySet", "staticMeshCollision", "bspModelClosure"] },
+          "editableProperties": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1 },
+            "uniqueItems": true
+          }
+        }
+      }
+    }
+  }
+}

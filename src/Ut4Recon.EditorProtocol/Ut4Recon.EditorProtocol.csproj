@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ut4Recon.Core\Ut4Recon.Core.csproj" />
+    <ProjectReference Include="..\Ut4Recon.Geometry\Ut4Recon.Geometry.csproj" />
+    <ProjectReference Include="..\Ut4Recon.Package\Ut4Recon.Package.csproj" />
+    <PackageReference Include="UAssetAPI" Version="1.1.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="Ut4Recon.UnitTests" />
+  </ItemGroup>
+</Project>

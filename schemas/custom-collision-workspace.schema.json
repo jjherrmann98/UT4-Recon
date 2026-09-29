@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ut4recon.local/schemas/custom-collision-workspace-v1.json",
+  "type": "object",
+  "required": ["schemaVersion", "profile", "editor", "projectFile", "mapPackagePath", "sourceT3d", "importCommands", "cookedPackage", "status", "limitations"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "profile": { "const": "ut4-4.15-windows-no-editor-v1" },
+    "editor": { "type": "object" },
+    "projectFile": { "type": "string" },
+    "mapPackagePath": { "const": "/Game/UT4ReconDonor/CustomCollisionDonor" },
+    "sourceT3d": { "type": "string" },
+    "importCommands": { "type": "string" },
+    "cookedPackage": { "type": "string" },
+    "status": { "enum": ["generated", "ready-for-authoring", "cooked-and-certified"] },
+    "limitations": { "type": "array", "items": { "type": "string" } }
+  },
+  "additionalProperties": false
+}

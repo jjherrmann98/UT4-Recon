@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\Ut4Recon.Core\Ut4Recon.Core.csproj" />
+    <ProjectReference Include="..\Ut4Recon.Pak\Ut4Recon.Pak.csproj" />
+    <ProjectReference Include="..\Ut4Recon.Package\Ut4Recon.Package.csproj" />
+    <ProjectReference Include="..\Ut4Recon.EditorProtocol\Ut4Recon.EditorProtocol.csproj" />
+    <ProjectReference Include="..\Ut4Recon.Geometry\Ut4Recon.Geometry.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+</Project>

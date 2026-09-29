@@ -1,0 +1,8 @@
+<Project>
+  <PropertyGroup>
+    <Version>0.1.0-alpha.1</Version>
+    <Deterministic>true</Deterministic>
+    <!-- CUE4Parse 1.2.2 publishes its native helper in the managed compile asset group. -->
+    <NoWarn>$(NoWarn);MSB3246</NoWarn>
+  </PropertyGroup>
+</Project>

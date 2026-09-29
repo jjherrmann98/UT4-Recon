@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ut4recon.local/schemas/mesh-editor-workspace.schema.json",
+  "title": "UT4Recon mesh editor workspace",
+  "type": "object",
+  "required": ["schemaVersion", "profile", "meshIr", "editorObj", "renderObj", "collisionObj", "importSettings", "destinationPath", "status"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "profile": { "const": "ut4-4.15-static-mesh-windows-v1" },
+    "meshIr": { "type": "string" }, "editorObj": { "type": "string" }, "renderObj": { "type": "string" }, "collisionObj": { "type": "string" },
+    "importSettings": { "type": "string" }, "destinationPath": { "type": "string", "pattern": "^/Game/" }, "status": { "type": "string" }
+  },
+  "additionalProperties": false
+}

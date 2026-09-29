@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ut4recon.local/schemas/prototype-certification.schema.json",
+  "title": "UT4 Recon prototype certification",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "profile", "createdUtc", "releaseArchive", "checks", "workspace", "collisionRepair", "runtime", "rejections", "passed"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "profile": { "type": "string", "minLength": 1 },
+    "createdUtc": { "type": "string", "format": "date-time" },
+    "releaseArchive": { "$ref": "#/$defs/file" },
+    "checks": { "type": "object" },
+    "workspace": { "type": "object" },
+    "collisionRepair": { "type": "object" },
+    "runtime": { "type": "object" },
+    "rejections": { "type": "array", "items": { "type": "object" } },
+    "passed": { "type": "boolean" }
+  },
+  "$defs": {
+    "file": {
+      "type": "object",
+      "required": ["path", "size", "sha256"],
+      "properties": {
+        "path": { "type": "string", "minLength": 1 },
+        "size": { "type": "integer", "minimum": 0 },
+        "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+      }
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ut4recon.local/schemas/edit-manifest-v1.json",
+  "title": "UT4 reconstruction edit manifest",
+  "type": "object",
+  "required": ["schemaVersion", "profile", "inputPak", "reconstructionIr", "operations"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "profile": { "const": "ut4-4.15-windows-no-editor-v1" },
+    "inputPak": { "$ref": "#/$defs/file" },
+    "reconstructionIr": { "$ref": "#/$defs/file" },
+    "operations": { "type": "array", "items": { "$ref": "#/$defs/operation" } }
+  },
+  "$defs": {
+    "file": {
+      "type": "object", "required": ["path", "size", "sha256"],
+      "properties": { "path": { "type": "string" }, "size": { "type": "integer", "minimum": 0 }, "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" } }, "additionalProperties": false
+    },
+    "operation": {
+      "type": "object",
+      "required": ["operation", "packagePath", "objectId", "objectPath", "originalPayloadHash", "propertyPath", "before", "after", "source", "supportRule"],
+      "properties": {
+        "operation": { "enum": ["set-property", "delete-actor", "clone-actor", "replace-collision", "replace-bsp"] }, "packagePath": { "type": "string" }, "objectId": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "objectPath": { "type": "string" }, "originalPayloadHash": { "type": "string", "pattern": "^[0-9a-f]{64}$" }, "propertyPath": { "type": "string" },
+        "before": {}, "after": {}, "source": { "enum": ["cli", "editor-proxy"] }, "supportRule": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

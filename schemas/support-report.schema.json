@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ut4recon.local/schemas/support-report-v1.json",
+  "title": "UT4 reconstruction support report",
+  "type": "object",
+  "required": ["schemaVersion", "profile", "counts", "diagnostics", "canCreateEditableProject"],
+  "properties": {
+    "schemaVersion": { "const": 1 }, "profile": { "const": "ut4-4.15-windows-no-editor-v1" },
+    "counts": {
+      "type": "array", "items": {
+        "type": "object", "required": ["level", "count"],
+        "properties": { "level": { "enum": ["preserve", "propertyEditable", "reconstructable", "proxyOnly", "unsupported"] }, "count": { "type": "integer", "minimum": 0 } }, "additionalProperties": false
+      }
+    },
+    "diagnostics": { "type": "array", "items": { "type": "string" } }, "canCreateEditableProject": { "type": "boolean" }
+  },
+  "additionalProperties": false
+}

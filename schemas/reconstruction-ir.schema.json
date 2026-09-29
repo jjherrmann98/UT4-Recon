@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ut4recon.local/schemas/reconstruction-ir-v1.json",
+  "title": "UT4 reconstruction IR",
+  "type": "object",
+  "required": ["schemaVersion", "profile", "inputPak", "packages"],
+  "properties": {
+    "schemaVersion": { "const": 1 }, "profile": { "const": "ut4-4.15-windows-no-editor-v1" },
+    "inputPak": { "$ref": "#/$defs/file" }, "packages": { "type": "array", "items": { "$ref": "#/$defs/package" } }
+  },
+  "$defs": {
+    "file": {
+      "type": "object", "required": ["path", "size", "sha256"],
+      "properties": { "path": { "type": "string" }, "size": { "type": "integer", "minimum": 0 }, "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" } }, "additionalProperties": false
+    },
+    "customVersion": {
+      "type": "object", "required": ["key", "name", "version"],
+      "properties": { "key": { "type": "string" }, "name": { "type": "string" }, "version": { "type": "integer" } }, "additionalProperties": false
+    },
+    "object": {
+      "type": "object", "required": ["id", "objectPath", "exportIndex", "serialSize", "payloadHash", "taggedPropertyCount", "opaqueNativeBytes", "support", "supportReason"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[0-9a-f]{64}$" }, "objectPath": { "type": "string" }, "classPath": { "type": ["string", "null"] },
+        "exportIndex": { "type": "integer", "minimum": 1 }, "serialSize": { "type": "integer", "minimum": 0 }, "payloadHash": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "taggedPropertyCount": { "type": "integer", "minimum": 0 }, "opaqueNativeBytes": { "type": "integer", "minimum": 0 },
+        "support": { "enum": ["preserve", "propertyEditable", "reconstructable", "proxyOnly", "unsupported"] }, "supportReason": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "package": {
+      "type": "object", "required": ["internalPath", "packagePath", "file", "sidecars", "objectVersion", "recordedEngineVersion", "packageFlags", "isFilterEditorOnly", "containsMap", "nameCount", "importCount", "exportCount", "customVersions", "objects", "importPackages", "unavailableAuthoringFields", "diagnostics"],
+      "properties": {
+        "internalPath": { "type": "string" }, "packagePath": { "type": "string" }, "file": { "$ref": "#/$defs/file" }, "sidecars": { "type": "array", "items": { "$ref": "#/$defs/file" } },
+        "objectVersion": { "type": "string" }, "recordedEngineVersion": { "type": "string" }, "packageFlags": { "type": "string" }, "isFilterEditorOnly": { "type": "boolean" }, "containsMap": { "type": "boolean" },
+        "nameCount": { "type": "integer", "minimum": 0 }, "importCount": { "type": "integer", "minimum": 0 }, "exportCount": { "type": "integer", "minimum": 0 },
+        "customVersions": { "type": "array", "items": { "$ref": "#/$defs/customVersion" } }, "objects": { "type": "array", "items": { "$ref": "#/$defs/object" } },
+        "importPackages": { "type": "array", "items": { "type": "string" } }, "unavailableAuthoringFields": { "type": "array", "items": { "type": "string" } }, "diagnostics": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ut4recon.local/schemas/validation-report-v1.json",
+  "title": "UT4 reconstruction validation report",
+  "type": "object",
+  "required": ["schemaVersion", "profile", "inputPak", "editManifest", "outputPak", "changedExports", "untouchedExportsVerified", "diagnostics", "passed"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "profile": { "const": "ut4-4.15-windows-no-editor-v1" },
+    "inputPak": { "$ref": "#/$defs/file" },
+    "editManifest": { "$ref": "#/$defs/file" },
+    "outputPak": { "$ref": "#/$defs/file" },
+    "changedExports": { "type": "array", "items": { "$ref": "#/$defs/change" } },
+    "untouchedExportsVerified": { "type": "integer", "minimum": 0 },
+    "diagnostics": { "type": "array", "items": { "type": "string" } },
+    "passed": { "type": "boolean" }
+  },
+  "$defs": {
+    "file": {
+      "type": "object", "required": ["path", "size", "sha256"],
+      "properties": { "path": { "type": "string" }, "size": { "type": "integer", "minimum": 0 }, "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" } },
+      "additionalProperties": false
+    },
+    "change": {
+      "type": "object",
+      "required": ["packagePath", "objectId", "objectPath", "beforePayloadHash", "afterPayloadHash", "approvedProperties"],
+      "properties": {
+        "packagePath": { "type": "string" }, "objectId": { "type": "string", "pattern": "^[0-9a-f]{64}$" }, "objectPath": { "type": "string" },
+        "beforePayloadHash": { "type": "string", "pattern": "^[0-9a-f]{64}$" }, "afterPayloadHash": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "approvedProperties": { "type": "array", "minItems": 1, "items": { "type": "string" } }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

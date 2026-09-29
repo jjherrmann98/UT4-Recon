@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ut4recon.local/schemas/custom-collision-donor-v1.json",
+  "type": "object",
+  "required": ["schemaVersion", "profile", "editorChangelist", "runtimeApiVersion", "package", "internalPath", "actorExportIndex", "actorObjectPath", "closure", "polygonCount", "vertexCount", "boundsMinimum", "boundsMaximum", "geometryFingerprint", "collisionFingerprint", "requiredImportPackages", "supportedTransforms", "limitations"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "profile": { "const": "ut4-4.15-windows-no-editor-v1" },
+    "editorChangelist": { "const": 3525360 },
+    "runtimeApiVersion": { "const": 3525109 },
+    "package": { "type": "object" },
+    "internalPath": { "const": "UnrealTournament/Content/UT4ReconDonor/CustomCollisionDonor.umap" },
+    "actorExportIndex": { "type": "integer", "minimum": 1 },
+    "actorObjectPath": { "type": "string" },
+    "closure": { "type": "array", "minItems": 4, "maxItems": 4, "items": { "type": "object" } },
+    "polygonCount": { "type": "integer", "minimum": 1 },
+    "vertexCount": { "type": "integer", "minimum": 4 },
+    "boundsMinimum": { "$ref": "#/$defs/vector" },
+    "boundsMaximum": { "$ref": "#/$defs/vector" },
+    "geometryFingerprint": { "$ref": "#/$defs/hash" },
+    "collisionFingerprint": { "$ref": "#/$defs/hash" },
+    "requiredImportPackages": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "supportedTransforms": { "const": ["translation", "rotation", "relative-scale-3d"] },
+    "limitations": { "type": "array", "items": { "type": "string" } }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "hash": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "vector": { "type": "object", "required": ["x", "y", "z"], "additionalProperties": false, "properties": { "x": { "type": "number" }, "y": { "type": "number" }, "z": { "type": "number" } } }
+  }
+}

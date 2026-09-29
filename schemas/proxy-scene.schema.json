@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ut4recon.local/schemas/proxy-scene-v2.json",
+  "type": "object",
+  "required": ["schemaVersion", "profile", "inputPak", "reconstructionIr", "mapPackagePath", "editorMapPackagePath", "fidelityCounts", "objects", "diagnostics"],
+  "properties": {
+    "schemaVersion": { "const": 2 }, "profile": { "type": "string" }, "inputPak": { "type": "object" }, "reconstructionIr": { "type": "object" },
+    "mapPackagePath": { "type": "string" }, "editorMapPackagePath": { "type": "string" },
+    "fidelityCounts": { "type": "array", "items": { "type": "object", "required": ["category", "count"], "properties": { "category": { "enum": ["exactEditable", "reconstructed", "behavioralProxy", "preserveOnly"] }, "count": { "type": "integer", "minimum": 0 } }, "additionalProperties": false } },
+    "objects": { "type": "array", "items": { "type": "object", "required": ["reconstructionId", "objectPath", "exportIndex", "kind", "editorName", "support", "fidelity", "evidence", "inventedEditorMetadata", "limitations", "capabilities", "editableProperties"], "properties": {
+      "reconstructionId": { "type": "string", "pattern": "^[0-9a-f]{64}$" }, "objectPath": { "type": "string" }, "classPath": { "type": ["string", "null"] }, "exportIndex": { "type": "integer", "minimum": 1 }, "ownerReconstructionId": { "type": ["string", "null"] },
+      "kind": { "enum": ["actor", "component", "subobject"] }, "editorName": { "type": "string" }, "support": { "enum": ["preserve", "propertyEditable", "reconstructable", "proxyOnly", "unsupported"] }, "fidelity": { "enum": ["exactEditable", "reconstructed", "behavioralProxy", "preserveOnly"] },
+      "evidence": { "type": "array", "items": { "type": "string" } }, "inventedEditorMetadata": { "type": "array", "items": { "type": "string" } }, "limitations": { "type": "array", "items": { "type": "string" } },
+      "capabilities": { "type": "array", "items": { "type": "object", "required": ["operation", "state", "interface", "reason"], "properties": { "operation": { "type": "string" }, "propertyPath": { "type": ["string", "null"] }, "state": { "enum": ["available", "requiresDonor", "blocked"] }, "interface": { "type": "string" }, "supportRule": { "type": ["string", "null"] }, "reason": { "type": "string" } }, "additionalProperties": false } },
+      "collision": { "type": ["object", "null"] }, "behavior": { "type": ["object", "null"] }, "editableProperties": { "type": "array" }
+    }, "additionalProperties": false } },
+    "diagnostics": { "type": "array", "items": { "type": "string" } }
+  }, "additionalProperties": false
+}

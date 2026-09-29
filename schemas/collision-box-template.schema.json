@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ut4recon.local/schemas/collision-box-template-v1.json",
+  "title": "UT4Recon certified collision box template",
+  "type": "object",
+  "required": ["schemaVersion", "profile", "editorChangelist", "runtimeApiVersion", "package", "internalPath", "actorExportIndex", "actorObjectPath", "closure", "dimensions", "geometryFingerprint", "collisionFingerprint", "requiredImportPackages", "supportedTransforms"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "profile": { "const": "ut4-4.15-windows-no-editor-v1" },
+    "editorChangelist": { "const": 3525360 },
+    "runtimeApiVersion": { "const": 3525109 },
+    "package": { "$ref": "#/$defs/file" },
+    "internalPath": { "const": "UnrealTournament/Content/UT4Recon/Templates/CollisionBoxTemplate.umap" },
+    "actorExportIndex": { "type": "integer", "minimum": 1 },
+    "actorObjectPath": { "type": "string", "minLength": 1 },
+    "closure": { "type": "array", "minItems": 4, "maxItems": 4, "items": { "type": "object" } },
+    "dimensions": {
+      "type": "object", "required": ["x", "y", "z"], "additionalProperties": false,
+      "properties": { "x": { "const": 100 }, "y": { "const": 100 }, "z": { "const": 100 } }
+    },
+    "geometryFingerprint": { "$ref": "#/$defs/hash" },
+    "collisionFingerprint": { "$ref": "#/$defs/hash" },
+    "requiredImportPackages": { "type": "array", "items": { "enum": ["/Script/Engine", "/Script/UnrealTournament"] }, "uniqueItems": true },
+    "supportedTransforms": { "const": ["translation", "rotation", "relative-scale-3d"] }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "hash": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "file": {
+      "type": "object", "required": ["path", "size", "sha256"], "additionalProperties": false,
+      "properties": { "path": { "type": "string" }, "size": { "type": "integer", "minimum": 1 }, "sha256": { "$ref": "#/$defs/hash" } }
+    }
+  }
+}

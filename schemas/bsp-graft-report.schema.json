@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ut4recon.local/schemas/bsp-graft-report.schema.json",
+  "title": "UT4Recon BSP graft report",
+  "type": "object",
+  "required": ["schemaVersion", "profile", "baselineSha256", "donorSha256", "outputSha256", "closureExportIndices", "changedClosureExportIndices", "addedClosureExportIndices", "preservedLevelExportCount", "levelExportsPreserved", "unrelatedExportsVerified", "geometryMatchesDonor", "collisionClosureMatchesDonor", "diagnostics", "passed"],
+  "properties": {
+    "schemaVersion": { "const": 1 }, "profile": { "const": "ut4-4.15-bsp-windows-v1" },
+    "baselineSha256": { "$ref": "#/$defs/hash" }, "donorSha256": { "$ref": "#/$defs/hash" }, "outputSha256": { "$ref": "#/$defs/hash" },
+    "closureExportIndices": { "type": "array", "items": { "type": "integer", "minimum": 1 } }, "changedClosureExportIndices": { "type": "array", "items": { "type": "integer", "minimum": 1 } }, "addedClosureExportIndices": { "type": "array", "items": { "type": "integer", "minimum": 1 } },
+    "preservedLevelExportCount": { "type": "integer", "minimum": 0 }, "levelExportsPreserved": { "type": "boolean" }, "unrelatedExportsVerified": { "type": "integer", "minimum": 0 },
+    "geometryMatchesDonor": { "type": "boolean" }, "collisionClosureMatchesDonor": { "type": "boolean" }, "diagnostics": { "type": "array", "items": { "type": "string" } }, "passed": { "type": "boolean" }
+  },
+  "$defs": { "hash": { "type": "string", "pattern": "^[0-9a-f]{64}$" } },
+  "additionalProperties": false
+}

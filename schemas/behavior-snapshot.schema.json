@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ut4recon.local/schemas/behavior-snapshot.schema.json",
+  "title": "UT4Recon compiled behavior snapshot",
+  "type": "object",
+  "required": ["schemaVersion", "profile", "packages", "diagnostics"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "profile": { "const": "ut4-4.15-windows-no-editor-v1" },
+    "packages": { "type": "array", "items": { "$ref": "#/$defs/package" } },
+    "diagnostics": { "type": "array", "items": { "type": "string" } }
+  },
+  "$defs": {
+    "hash": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "owned": {
+      "type": "object", "required": ["objectPath", "exportIndex", "payloadHash"],
+      "properties": { "objectPath": { "type": "string" }, "classPath": { "type": ["string", "null"] }, "exportIndex": { "type": "integer", "minimum": 1 }, "payloadHash": { "$ref": "#/$defs/hash" } }, "additionalProperties": false
+    },
+    "function": {
+      "type": "object", "required": ["objectPath", "exportIndex", "scriptBytecodeSize", "bytecodeFingerprint", "serializedFunctionHash", "opcodeCounts", "calls"],
+      "properties": { "objectPath": { "type": "string" }, "exportIndex": { "type": "integer", "minimum": 1 }, "scriptBytecodeSize": { "type": "integer", "minimum": 0 }, "bytecodeFingerprint": { "$ref": "#/$defs/hash" }, "serializedFunctionHash": { "$ref": "#/$defs/hash" }, "opcodeCounts": { "type": "object", "additionalProperties": { "type": "integer", "minimum": 1 } }, "calls": { "type": "array", "items": { "type": "string" } } }, "additionalProperties": false
+    },
+    "class": {
+      "type": "object", "required": ["objectPath", "exportIndex", "metadataFingerprint", "delegateFingerprint", "functionPaths", "ownedObjects"],
+      "properties": { "objectPath": { "type": "string" }, "exportIndex": { "type": "integer", "minimum": 1 }, "superPath": { "type": ["string", "null"] }, "defaultObjectPath": { "type": ["string", "null"] }, "metadataFingerprint": { "$ref": "#/$defs/hash" }, "defaultObjectPayloadHash": { "oneOf": [{ "$ref": "#/$defs/hash" }, { "type": "null" }] }, "delegateFingerprint": { "$ref": "#/$defs/hash" }, "functionPaths": { "type": "array", "items": { "type": "string" } }, "ownedObjects": { "type": "array", "items": { "$ref": "#/$defs/owned" } } }, "additionalProperties": false
+    },
+    "package": {
+      "type": "object", "required": ["internalPath", "packagePath", "sourceSha256", "importPackages", "dependencyFingerprint", "classes", "functions"],
+      "properties": { "internalPath": { "type": "string" }, "packagePath": { "type": "string" }, "sourceSha256": { "$ref": "#/$defs/hash" }, "importPackages": { "type": "array", "items": { "type": "string" } }, "dependencyFingerprint": { "$ref": "#/$defs/hash" }, "classes": { "type": "array", "items": { "$ref": "#/$defs/class" } }, "functions": { "type": "array", "items": { "$ref": "#/$defs/function" } } }, "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

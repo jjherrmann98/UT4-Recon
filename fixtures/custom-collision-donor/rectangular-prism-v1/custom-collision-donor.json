@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "profile": "ut4-4.15-windows-no-editor-v1",
+  "editorChangelist": 3525360,
+  "runtimeApiVersion": 3525109,
+  "package": {
+    "path": "CustomCollisionDonor.umap",
+    "size": 8101,
+    "sha256": "02e6dcbc0115fadd582954db1f6ae446c3a464867e97b0e84b4850bbf9180019"
+  },
+  "internalPath": "UnrealTournament/Content/UT4ReconDonor/CustomCollisionDonor.umap",
+  "actorExportIndex": 2,
+  "actorObjectPath": "CustomCollisionDonor.PersistentLevel.UT4ReconCollisionBoxTemplate",
+  "closure": [
+    {
+      "role": "BlockingVolume",
+      "reconstructionId": "8b2f0134dbf8fa8d88c90d165f79111807cc72441ae72eb0cb8b6b90df7f7ba2",
+      "objectPath": "CustomCollisionDonor.PersistentLevel.UT4ReconCollisionBoxTemplate",
+      "classPath": "/Script/Engine.BlockingVolume",
+      "exportIndex": 2,
+      "payloadHash": "39be09645cbd0693cd424f151f846c97df16e77302258081e2dcf2bd334f294b",
+      "opaqueNativeBytes": 0
+    },
+    {
+      "role": "BrushComponent",
+      "reconstructionId": "88d60f0d9a8f41a0c7dfab313397710e969e6fc4758979b73a780f21a825c3fe",
+      "objectPath": "CustomCollisionDonor.PersistentLevel.UT4ReconCollisionBoxTemplate.BrushComponent0",
+      "classPath": "/Script/Engine.BrushComponent",
+      "exportIndex": 4,
+      "payloadHash": "3ec78e64dde4993d8bb8ac13c470cbf417a619f4583fc2be9353004a6ce009aa",
+      "opaqueNativeBytes": 0
+    },
+    {
+      "role": "Model",
+      "reconstructionId": "aed117dee272789575faa3c046f29a42603933ec3eb8126531338cc785d96eb7",
+      "objectPath": "CustomCollisionDonor.PersistentLevel.UT4ReconCollisionBoxTemplate.UT4ReconCollisionBoxTemplate_Model",
+      "classPath": "/Script/Engine.Model",
+      "exportIndex": 8,
+      "payloadHash": "53f7b4bf7c5036571bfcc035c0685755aa3de13bf8ffbb3e1041a8913cd34b0b",
+      "opaqueNativeBytes": 1602
+    },
+    {
+      "role": "BodySetup",
+      "reconstructionId": "ced52d9b1a14c6de471951439e9c3497f116c9ffea4325f71016d56ca3eee19b",
+      "objectPath": "CustomCollisionDonor.PersistentLevel.UT4ReconCollisionBoxTemplate.BrushComponent0.BodySetup_1",
+      "classPath": "/Script/Engine.BodySetup",
+      "exportIndex": 3,
+      "payloadHash": "df7a775422b7e720156734ad9db40a3c71b2d9f71ddf524823f041fe8ffdecd6",
+      "opaqueNativeBytes": 550
+    }
+  ],
+  "polygonCount": 6,
+  "vertexCount": 8,
+  "boundsMinimum": {
+    "x": -120,
+    "y": -120,
+    "z": -50
+  },
+  "boundsMaximum": {
+    "x": 120,
+    "y": 120,
+    "z": 50
+  },
+  "geometryFingerprint": "fdaf334e604849cc68c9d5f5bd66867f87acd95ebb449b345f8405139fb406c8",
+  "collisionFingerprint": "2720b5d6c9ed0704b93ced3667d65d077e94515e99ee074063c42fd77954286a",
+  "requiredImportPackages": [
+    "/Script/Engine",
+    "/Script/UnrealTournament"
+  ],
+  "supportedTransforms": [
+    "translation",
+    "rotation",
+    "relative-scale-3d"
+  ],
+  "limitations": [
+    "The donor owns one four-export BlockingVolume closure only.",
+    "Brush construction history and editor metadata are not preserved."
+  ]
+}

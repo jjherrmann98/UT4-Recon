@@ -1,0 +1,6 @@
+ACTOR SELECT ALL
+DELETE
+MAP IMPORTADD FILE=C:/Users/Jason/Documents/ChatGPT/ut4/fixtures/collision-box-template/source/CollisionBoxTemplate.t3d
+MAP REBUILD
+OBJ SAVEPACKAGE PACKAGE=/Game/Reconstruction/CollisionBoxTemplate FILE=C:/Users/Jason/Documents/ChatGPT/ut4/research/reconstruction/project/Content/Reconstruction/CollisionBoxTemplate.umap SILENT=true
+QUIT

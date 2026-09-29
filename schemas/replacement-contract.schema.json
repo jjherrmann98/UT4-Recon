@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema", "$id": "https://ut4recon.local/schemas/replacement-contract-v1.json",
+  "type": "object", "required": ["schemaVersion", "contractId", "profile", "kind", "packagePath", "internalPath", "rootObjectId", "rootObjectPath", "originalRootPayloadHash", "closureFingerprint", "allowedDonorModes", "donorRequirements", "userOwnedScope", "preservedScope", "rejectedChanges"],
+  "properties": {
+    "schemaVersion": { "const": 1 }, "contractId": { "$ref": "#/$defs/hash" }, "profile": { "type": "string" }, "kind": { "enum": ["propertySet", "staticMeshCollision", "bspModelClosure"] },
+    "packagePath": { "type": "string" }, "internalPath": { "type": "string" }, "rootObjectId": { "$ref": "#/$defs/hash" }, "rootObjectPath": { "type": "string" }, "originalRootPayloadHash": { "$ref": "#/$defs/hash" }, "closureFingerprint": { "$ref": "#/$defs/hash" },
+    "allowedDonorModes": { "type": "array", "items": { "enum": ["externalDocument", "compatibleShell", "freshShell"] } },
+    "donorRequirements": { "$ref": "#/$defs/strings" }, "userOwnedScope": { "$ref": "#/$defs/strings" }, "preservedScope": { "$ref": "#/$defs/strings" }, "rejectedChanges": { "$ref": "#/$defs/strings" }
+  }, "additionalProperties": false, "$defs": { "hash": { "type": "string", "pattern": "^[0-9a-f]{64}$" }, "strings": { "type": "array", "items": { "type": "string" } } }
+}

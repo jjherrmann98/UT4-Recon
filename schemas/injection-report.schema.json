@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema", "$id": "https://ut4recon.local/schemas/injection-report-v1.json",
+  "type": "object", "required": ["schemaVersion", "contractId", "extractionManifest", "donorValidation", "packagePath", "rootObjectId", "operations", "supportRules", "editManifest", "passed"],
+  "properties": {
+    "schemaVersion": { "const": 1 }, "contractId": { "$ref": "#/$defs/hash" }, "extractionManifest": { "type": "object" }, "donorValidation": { "type": "object" },
+    "packagePath": { "type": "string" }, "rootObjectId": { "$ref": "#/$defs/hash" }, "operations": { "type": "array", "minItems": 1, "items": { "enum": ["set-property", "replace-collision", "replace-bsp"] } }, "supportRules": { "type": "array", "minItems": 1, "items": { "type": "string" } }, "editManifest": { "type": "string" }, "passed": { "type": "boolean" }
+  }, "additionalProperties": false, "$defs": { "hash": { "type": "string", "pattern": "^[0-9a-f]{64}$" } }
+}

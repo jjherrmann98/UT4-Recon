@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema", "$id": "https://ut4recon.local/schemas/asset-extraction-manifest-v1.json",
+  "type": "object", "required": ["schemaVersion", "profile", "createdUtc", "inputPak", "reconstructionIr", "kind", "packagePath", "internalPath", "rootObjectId", "rootObjectPath", "objectVersion", "recordedEngineVersion", "packageFlags", "customVersions", "baselineFiles", "closure", "dependencies", "interchangeFiles", "replacementContract", "limitations"],
+  "properties": {
+    "schemaVersion": { "const": 1 }, "profile": { "type": "string" }, "createdUtc": { "type": "string", "format": "date-time" },
+    "inputPak": { "type": "object" }, "reconstructionIr": { "type": "object" }, "kind": { "enum": ["propertySet", "staticMeshCollision", "bspModelClosure"] },
+    "packagePath": { "type": "string" }, "internalPath": { "type": "string" }, "rootObjectId": { "$ref": "#/$defs/hash" }, "rootObjectPath": { "type": "string" }, "rootClassPath": { "type": ["string", "null"] }, "objectVersion": { "type": "string" }, "recordedEngineVersion": { "type": "string" }, "packageFlags": { "type": "string" }, "customVersions": { "type": "array" },
+    "baselineFiles": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/file" } },
+    "closure": { "type": "array", "minItems": 1, "items": { "type": "object", "required": ["role", "reconstructionId", "objectPath", "exportIndex", "payloadHash", "opaqueNativeBytes"], "properties": { "role": { "type": "string" }, "reconstructionId": { "$ref": "#/$defs/hash" }, "objectPath": { "type": "string" }, "classPath": { "type": ["string", "null"] }, "exportIndex": { "type": "integer", "minimum": 1 }, "payloadHash": { "$ref": "#/$defs/hash" }, "opaqueNativeBytes": { "type": "integer", "minimum": 0 } }, "additionalProperties": false } },
+    "dependencies": { "type": "array" }, "interchangeFiles": { "type": "array", "items": { "$ref": "#/$defs/file" } }, "replacementContract": { "$ref": "#/$defs/file" }, "limitations": { "type": "array", "items": { "type": "string" } }
+  }, "additionalProperties": false,
+  "$defs": { "hash": { "type": "string", "pattern": "^[0-9a-f]{64}$" }, "file": { "type": "object", "required": ["role", "relativePath", "file"], "properties": { "role": { "type": "string" }, "relativePath": { "type": "string" }, "file": { "type": "object" } }, "additionalProperties": false } }
+}

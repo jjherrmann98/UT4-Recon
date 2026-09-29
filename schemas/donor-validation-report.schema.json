@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema", "$id": "https://ut4recon.local/schemas/donor-validation-report-v1.json",
+  "type": "object", "required": ["schemaVersion", "contractId", "kind", "mode", "baseline", "donor", "changedExportIndices", "userOwnedObjects", "preservedClaims", "unrelatedExportsVerified", "checks", "diagnostics", "passed"],
+  "properties": {
+    "schemaVersion": { "const": 1 }, "contractId": { "$ref": "#/$defs/hash" }, "kind": { "enum": ["propertySet", "staticMeshCollision", "bspModelClosure"] }, "mode": { "enum": ["externalDocument", "compatibleShell", "freshShell"] },
+    "baseline": { "type": "object" }, "donor": { "type": "object" }, "changedExportIndices": { "type": "array", "items": { "type": "integer", "minimum": 1 } }, "userOwnedObjects": { "type": "array", "items": { "type": "string" } }, "preservedClaims": { "type": "array", "items": { "type": "string" } }, "unrelatedExportsVerified": { "type": "integer", "minimum": 0 },
+    "checks": { "type": "array", "items": { "type": "object", "required": ["name", "passed", "detail"], "properties": { "name": { "type": "string" }, "passed": { "type": "boolean" }, "detail": { "type": "string" } }, "additionalProperties": false } },
+    "diagnostics": { "type": "array", "items": { "type": "string" } }, "passed": { "type": "boolean" }
+  }, "additionalProperties": false, "$defs": { "hash": { "type": "string", "pattern": "^[0-9a-f]{64}$" } }
+}

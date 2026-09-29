@@ -1,0 +1,17 @@
+{
+  "FileVersion": 3,
+  "Version": 1,
+  "VersionName": "0.1.0-alpha.1",
+  "FriendlyName": "UT4 Recon Editor",
+  "Description": "Editor adapter for the UT4 cooked-map recovery backend.",
+  "Category": "UT4 Recon",
+  "EnabledByDefault": false,
+  "CanContainContent": false,
+  "Modules": [
+    {
+      "Name": "Ut4ReconEditor",
+      "Type": "Editor",
+      "LoadingPhase": "Default"
+    }
+  ]
+}

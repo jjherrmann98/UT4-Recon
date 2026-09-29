@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema", "$id": "https://ut4recon.local/schemas/editor-diff-v1.json",
+  "type": "object", "required": ["schemaVersion", "profile", "reconstructionIr", "expectedTaggedObjects", "matchedTaggedObjects", "changedProperties", "missingReconstructionIds", "diagnostics", "passed"],
+  "properties": {
+    "schemaVersion": { "const": 1 }, "profile": { "type": "string" }, "reconstructionIr": { "type": "object" }, "expectedTaggedObjects": { "type": "integer", "minimum": 0 },
+    "matchedTaggedObjects": { "type": "integer", "minimum": 0 }, "changedProperties": { "type": "integer", "minimum": 0 }, "missingReconstructionIds": { "type": "array", "items": { "type": "string", "pattern": "^[0-9a-f]{64}$" } },
+    "diagnostics": { "type": "array", "items": { "type": "string" } }, "passed": { "type": "boolean" }
+  }, "additionalProperties": false
+}

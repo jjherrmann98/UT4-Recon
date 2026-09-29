@@ -1,0 +1,38 @@
+research/tools/**/bin/
+research/tools/**/obj/
+research/**/__pycache__/
+research/split-experiment/
+research/tools/CUE4Parse/
+research/**/project/Saved/
+research/**/project/Intermediate/
+research/**/project/DerivedDataCache/
+research/**/project/Binaries/
+research/**/project/Plugins/
+research/**/project/Releases/
+research/**/project/Content/RestrictedAssets/
+research/**/project/Content/StarterContent/
+research/investigation/runtime/
+src/**/bin/
+src/**/obj/
+tests/**/bin/
+tests/**/obj/
+artifacts/
+
+# Local research evidence contains third-party and Epic-authored cooked assets,
+# editor source excerpts, logs, and machine-specific workspaces. It is retained
+# locally but is intentionally excluded from the public repository.
+research/
+
+# User inputs and generated recovery projects must never be published by
+# accident. Public releases are attached separately through GitHub Releases.
+*.pak
+*.uasset
+*.uexp
+*.ubulk
+*.uptnl
+*.umap
+*.zip
+
+# The two small, project-authored cooked templates are deliberately versioned.
+!fixtures/collision-box-template/ut4-4.15-windows-no-editor-v1/CollisionBoxTemplate.umap
+!fixtures/custom-collision-donor/rectangular-prism-v1/CustomCollisionDonor.umap

@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ut4recon.local/schemas/bsp-comparison.schema.json",
+  "title": "UT4Recon BSP comparison",
+  "type": "object",
+  "required": ["schemaVersion", "profile", "withinTolerance", "surfaceAreaDifferenceRatio", "maximumBoundsDisplacement", "offlineQueriesEquivalent", "diagnostics"],
+  "properties": {
+    "schemaVersion": { "const": 1 }, "profile": { "const": "ut4-4.15-bsp-windows-v1" },
+    "withinTolerance": { "type": "boolean" }, "surfaceAreaDifferenceRatio": { "type": "number", "minimum": 0 },
+    "maximumBoundsDisplacement": { "type": "number", "minimum": 0 }, "offlineQueriesEquivalent": { "type": "boolean" },
+    "diagnostics": { "type": "array", "items": { "type": "string" } }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ut4recon.local/schemas/behavior-validation-report.schema.json",
+  "title": "UT4Recon compiled behavior validation report",
+  "type": "object",
+  "required": ["schemaVersion", "profile", "expectedFingerprint", "candidateFingerprint", "packagesVerified", "classesVerified", "functionsVerified", "differences", "passed"],
+  "properties": {
+    "schemaVersion": { "const": 1 }, "profile": { "const": "ut4-4.15-windows-no-editor-v1" },
+    "expectedFingerprint": { "$ref": "#/$defs/hash" }, "candidateFingerprint": { "$ref": "#/$defs/hash" },
+    "packagesVerified": { "type": "integer", "minimum": 0 }, "classesVerified": { "type": "integer", "minimum": 0 }, "functionsVerified": { "type": "integer", "minimum": 0 },
+    "differences": { "type": "array", "items": { "type": "string" } }, "passed": { "type": "boolean" }
+  },
+  "$defs": { "hash": { "type": "string", "pattern": "^[0-9a-f]{64}$" } },
+  "additionalProperties": false
+}

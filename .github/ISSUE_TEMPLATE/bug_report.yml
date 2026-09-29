@@ -1,0 +1,71 @@
+name: Bug report
+description: Report a reproducible failure or incorrect exported result
+title: "[Bug]: "
+labels: [bug, "needs reproduction"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not attach map paks, extracted game assets, Epic source, credentials, or complete generated workspaces. Redact personal paths where appropriate.
+  - type: input
+    id: version
+    attributes:
+      label: UT4 Recon version
+      placeholder: 0.1.0-alpha.1
+    validations:
+      required: true
+  - type: input
+    id: editor
+    attributes:
+      label: UT4 Editor build
+      description: Include version, changelist, and compatible changelist when known.
+      placeholder: 4.15.0, CL 3525360, compatible CL 3525109
+    validations:
+      required: true
+  - type: input
+    id: client
+    attributes:
+      label: Client and community plugins
+      placeholder: UT4ever Installer 1.1.0, UT4UU 10.1.6, NetcodePlus 2.0
+  - type: dropdown
+    id: stage
+    attributes:
+      label: Failure stage
+      options:
+        - Inspect or create project
+        - Create or import editor workspace
+        - Editor panel or object editing
+        - Export saved map
+        - Validate changes
+        - Build pak
+        - Client load or gameplay
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction steps
+      description: Include the selected object's displayed type and supported operations when relevant.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected result
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual result and error text
+      description: Paste the smallest useful redacted report or log excerpt.
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Content check
+      options:
+        - label: I have not attached copyrighted map/game files, Epic source, credentials, or a complete recovery workspace.
+          required: true

@@ -1,0 +1,7 @@
+* text=auto eol=lf
+
+*.umap binary
+*.dll binary
+*.exe binary
+*.pdb binary
+*.zip binary

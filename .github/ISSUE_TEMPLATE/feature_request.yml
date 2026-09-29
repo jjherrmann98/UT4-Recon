@@ -1,0 +1,31 @@
+name: Feature request
+description: Propose a supported edit, compatibility profile, or usability improvement
+title: "[Feature]: "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Map-maintenance problem
+      description: Describe what a mapper needs to accomplish and why the existing capabilities do not cover it.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed workflow
+      description: Explain what should appear in the editor and what should reach the cooked pak.
+    validations:
+      required: true
+  - type: textarea
+    id: preservation
+    attributes:
+      label: Preservation and validation considerations
+      description: Identify cooked behavior or unrelated data that must remain authoritative.
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Content check
+      options:
+        - label: I will not attach copyrighted map/game files or Epic source to this issue.
+          required: true

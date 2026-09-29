@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ut4recon.local/schemas/bsp-editor-workspace.schema.json",
+  "title": "UT4Recon BSP editor workspace",
+  "type": "object",
+  "required": ["schemaVersion", "profile", "bspIr", "t3d", "obj", "destinationPath", "status", "inventedEditorMetadata"],
+  "properties": {
+    "schemaVersion": { "const": 1 }, "profile": { "const": "ut4-4.15-bsp-windows-v1" },
+    "bspIr": { "type": "string" }, "t3d": { "type": "string" }, "obj": { "type": "string" },
+    "destinationPath": { "type": "string", "pattern": "^/Game/" }, "status": { "type": "string" },
+    "inventedEditorMetadata": { "type": "array", "items": { "type": "string" } }
+  },
+  "additionalProperties": false
+}

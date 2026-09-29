@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ut4recon.local/schemas/editor-workspace-v3.json",
+  "title": "UT4Recon editor workspace",
+  "type": "object",
+  "required": ["schemaVersion", "profile", "reconstructionIr", "editor", "projectFile", "mapPackagePath", "proxyScene", "importT3d", "collisionOverlayT3d", "collisionOverlayIndex", "importCommands", "exportCommands", "exportT3d", "status", "recoveryProject", "backendExecutable", "backendArguments", "defaultOutputPak", "defaultMapName"],
+  "properties": {
+    "schemaVersion": { "const": 3 },
+    "profile": { "const": "ut4-4.15-windows-no-editor-v1" },
+    "reconstructionIr": { "type": "object" },
+    "editor": { "type": "object" },
+    "projectFile": { "type": "string" },
+    "mapPackagePath": { "type": "string" },
+    "proxyScene": { "type": "string" },
+    "importT3d": { "type": "string" },
+    "collisionOverlayT3d": { "type": "string" },
+    "collisionOverlayIndex": { "type": "string" },
+    "importCommands": { "type": "string" },
+    "exportCommands": { "type": "string" },
+    "exportT3d": { "type": "string" },
+    "status": { "type": "string" },
+    "recoveryProject": { "type": "string" },
+    "backendExecutable": { "type": "string" },
+    "backendArguments": { "type": "array", "items": { "type": "string" } },
+    "defaultOutputPak": { "type": "string" },
+    "defaultMapName": { "type": "string", "pattern": "^[A-Za-z0-9_-]+$" }
+  },
+  "additionalProperties": false
+}

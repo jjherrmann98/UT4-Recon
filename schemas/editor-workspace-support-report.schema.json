@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ut4recon.local/schemas/editor-workspace-support-report-v1.json",
+  "type": "object",
+  "required": ["schemaVersion", "profile", "inputPak", "mapPackagePath", "objectCount", "fidelityCounts", "capabilityCounts", "exactCollisionOverlayCount", "behavioralProxyCount", "objectsWithLimitations", "requiresNativePlugin", "objects", "diagnostics"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "profile": { "type": "string" },
+    "inputPak": { "type": "object" },
+    "mapPackagePath": { "type": "string" },
+    "objectCount": { "type": "integer", "minimum": 0 },
+    "fidelityCounts": { "type": "array" },
+    "capabilityCounts": { "type": "array", "items": { "type": "object", "required": ["operation", "state", "count"], "properties": { "operation": { "type": "string" }, "state": { "enum": ["available", "requiresDonor", "blocked"] }, "count": { "type": "integer", "minimum": 0 } }, "additionalProperties": false } },
+    "exactCollisionOverlayCount": { "type": "integer", "minimum": 0 },
+    "behavioralProxyCount": { "type": "integer", "minimum": 0 },
+    "objectsWithLimitations": { "type": "integer", "minimum": 0 },
+    "requiresNativePlugin": { "const": false },
+    "objects": { "type": "array", "items": { "type": "object", "required": ["reconstructionId", "objectPath", "fidelity", "availableOperations", "limitations"], "properties": { "reconstructionId": { "type": "string", "pattern": "^[0-9a-f]{64}$" }, "objectPath": { "type": "string" }, "classPath": { "type": ["string", "null"] }, "fidelity": { "enum": ["exactEditable", "reconstructed", "behavioralProxy", "preserveOnly"] }, "availableOperations": { "type": "array", "items": { "type": "string" } }, "limitations": { "type": "array", "items": { "type": "string" } } }, "additionalProperties": false } },
+    "diagnostics": { "type": "array", "items": { "type": "string" } }
+  },
+  "additionalProperties": false
+}

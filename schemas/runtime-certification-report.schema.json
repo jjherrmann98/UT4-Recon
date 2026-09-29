@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ut4recon.local/schemas/runtime-certification-report.schema.json",
+  "title": "UT4 Recon runtime certification report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "profile", "createdUtc", "evidenceLevel", "outputPak", "log", "mapPackagePath", "checks", "limitations", "passed"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "profile": { "type": "string", "minLength": 1 },
+    "createdUtc": { "type": "string", "format": "date-time" },
+    "evidenceLevel": { "const": "package-load" },
+    "outputPak": { "$ref": "#/$defs/file" },
+    "log": { "$ref": "#/$defs/file" },
+    "mapPackagePath": { "type": "string", "pattern": "^/Game/" },
+    "gameMode": { "type": "string" },
+    "loadSeconds": { "type": "number", "minimum": 0 },
+    "checks": { "type": "array", "minItems": 3, "items": { "$ref": "#/$defs/check" } },
+    "limitations": { "type": "array", "minItems": 3, "items": { "type": "string", "minLength": 1 } },
+    "passed": { "type": "boolean" }
+  },
+  "$defs": {
+    "file": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "size", "sha256"],
+      "properties": {
+        "path": { "type": "string", "minLength": 1 },
+        "size": { "type": "integer", "minimum": 0 },
+        "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+      }
+    },
+    "check": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "passed", "detail"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "passed": { "type": "boolean" },
+        "detail": { "type": "string", "minLength": 1 }
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ut4recon.local/schemas/collision-graft-report.schema.json",
+  "title": "UT4Recon collision graft report",
+  "type": "object",
+  "required": ["schemaVersion", "profile", "baselineSha256", "donorSha256", "outputSha256", "staticMeshPayloadHashBefore", "staticMeshPayloadHashAfter", "bodySetupPayloadHashBefore", "bodySetupPayloadHashDonor", "bodySetupPayloadHashAfter", "renderPreserved", "collisionMatchesDonor", "navigationCollisionExportCount", "navigationCollisionMatchesDonor", "diagnostics", "passed"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "profile": { "const": "ut4-4.15-static-mesh-windows-v1" },
+    "baselineSha256": { "$ref": "#/$defs/hash" }, "donorSha256": { "$ref": "#/$defs/hash" }, "outputSha256": { "$ref": "#/$defs/hash" },
+    "staticMeshPayloadHashBefore": { "$ref": "#/$defs/hash" }, "staticMeshPayloadHashAfter": { "$ref": "#/$defs/hash" },
+    "bodySetupPayloadHashBefore": { "$ref": "#/$defs/hash" }, "bodySetupPayloadHashDonor": { "$ref": "#/$defs/hash" }, "bodySetupPayloadHashAfter": { "$ref": "#/$defs/hash" },
+    "renderPreserved": { "type": "boolean" }, "collisionMatchesDonor": { "type": "boolean" }, "navigationCollisionExportCount": { "type": "integer", "minimum": 0 }, "navigationCollisionMatchesDonor": { "type": "boolean" }, "diagnostics": { "type": "array", "items": { "type": "string" } }, "passed": { "type": "boolean" }
+  },
+  "additionalProperties": false,
+  "$defs": { "hash": { "type": "string", "pattern": "^[0-9a-f]{64}$" } }
+}

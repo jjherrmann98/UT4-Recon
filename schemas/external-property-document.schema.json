@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ut4recon.local/schemas/external-property-document-v1.json",
+  "type": "object",
+  "required": ["schemaVersion", "profile", "packagePath", "objectId", "objectPath", "originalPayloadHash", "properties"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "profile": { "type": "string", "minLength": 1 },
+    "packagePath": { "type": "string", "minLength": 1 },
+    "objectId": { "$ref": "#/$defs/hash" },
+    "objectPath": { "type": "string", "minLength": 1 },
+    "originalPayloadHash": { "$ref": "#/$defs/hash" },
+    "properties": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["propertyPath", "value", "supportRule"],
+        "properties": {
+          "propertyPath": { "type": "string", "minLength": 1 },
+          "value": {},
+          "supportRule": { "type": "string", "minLength": 1 }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false,
+  "$defs": { "hash": { "type": "string", "pattern": "^[0-9a-f]{64}$" } }
+}

@@ -1,0 +1,44 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="coverlet.collector" Version="6.0.2" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
+    <PackageReference Include="xunit" Version="2.9.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Xunit" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Ut4Recon.Core\Ut4Recon.Core.csproj" />
+    <ProjectReference Include="..\..\src\Ut4Recon.Pak\Ut4Recon.Pak.csproj" />
+    <ProjectReference Include="..\..\src\Ut4Recon.Package\Ut4Recon.Package.csproj" />
+    <ProjectReference Include="..\..\src\Ut4Recon.EditorProtocol\Ut4Recon.EditorProtocol.csproj" />
+    <ProjectReference Include="..\..\src\Ut4Recon.Geometry\Ut4Recon.Geometry.csproj" />
+  </ItemGroup>
+
+  <!--
+    These regression tests depend on locally retained cooked UT4 research
+    fixtures that cannot be redistributed in the public repository. The normal
+    public test suite excludes them. Maintainers with the private fixtures can
+    run them with: dotnet test -p:IncludePrivateFixtureTests=true
+  -->
+  <ItemGroup Condition="'$(IncludePrivateFixtureTests)' != 'true'">
+    <Compile Remove="AssetInterchangeTests.cs" />
+    <Compile Remove="BehaviorTests.cs" />
+    <Compile Remove="BspTests.cs" />
+    <Compile Remove="CookedMapFixtureTests.cs" />
+    <Compile Remove="EditorProtocolTests.cs" />
+    <Compile Remove="GeometryTests.cs" />
+  </ItemGroup>
+
+</Project>

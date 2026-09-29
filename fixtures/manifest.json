@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "profile": "ut4-4.15-windows-no-editor-v1",
+  "toolchain": {
+    "dotnetSdk": "9.0.101",
+    "uAssetApi": "1.1.0",
+    "cue4Parse": "1.2.2",
+    "editor": "4.15.0-3525360+++UT+Release-Next",
+    "unrealPakSha256": "f3c6ee2a3703925dae89a561da6fd798c5dfb7f5ddfa2e0db683a32efc516c3d"
+  },
+  "fixtures": [
+    {
+      "name": "ProjectAuthoredCollisionBoxTemplate",
+      "path": "fixtures/collision-box-template/ut4-4.15-windows-no-editor-v1/CollisionBoxTemplate.umap",
+      "size": 8078,
+      "sha256": "04630e499106fe2f6c9d01dc02d8e8cce3a5c2f870b0b68d8516cadf8c12241e"
+    },
+    {
+      "name": "ProjectAuthoredCustomCollisionDonor",
+      "path": "fixtures/custom-collision-donor/rectangular-prism-v1/CustomCollisionDonor.umap",
+      "size": 8101,
+      "sha256": "02e6dcbc0115fadd582954db1f6ae446c3a464867e97b0e84b4850bbf9180019"
+    }
+  ]
+}

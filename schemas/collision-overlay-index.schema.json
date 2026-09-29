@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema", "$id": "https://ut4recon.local/schemas/collision-overlay-index-v1.json",
+  "type": "object", "required": ["schemaVersion", "mapPackagePath", "t3d", "entries", "diagnostics"],
+  "properties": {
+    "schemaVersion": { "const": 1 }, "mapPackagePath": { "type": "string" }, "t3d": { "type": "string" },
+    "entries": { "type": "array", "items": { "type": "object", "required": ["sourceComponentId", "geometryObjectId", "sourceObjectPath", "actorName", "polygonCount", "geometryFidelity"], "properties": { "sourceComponentId": { "type": "string", "pattern": "^[0-9a-f]{64}$" }, "geometryObjectId": { "type": "string", "pattern": "^[0-9a-f]{64}$" }, "sourceObjectPath": { "type": "string" }, "actorName": { "type": "string" }, "polygonCount": { "type": "integer", "minimum": 0 }, "geometryFidelity": { "const": "exact-runtime-arrays" } }, "additionalProperties": false } },
+    "diagnostics": { "type": "array", "items": { "type": "string" } }
+  }, "additionalProperties": false
+}

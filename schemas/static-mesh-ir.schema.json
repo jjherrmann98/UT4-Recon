@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ut4recon.local/schemas/static-mesh-ir.schema.json",
+  "title": "UT4Recon static mesh IR",
+  "type": "object",
+  "required": ["schemaVersion", "profile", "virtualPath", "sourceFileSha256", "objectName", "staticMeshExportIndex", "bounds", "lods", "diagnostics"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "profile": { "const": "ut4-4.15-static-mesh-windows-v1" },
+    "virtualPath": { "type": "string" },
+    "sourceFileSha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "objectName": { "type": "string" },
+    "staticMeshExportIndex": { "type": "integer", "minimum": 1 },
+    "bounds": { "$ref": "#/$defs/bounds" },
+    "lods": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/lod" } },
+    "collision": { "anyOf": [{ "type": "null" }, { "$ref": "#/$defs/collision" }] },
+    "diagnostics": { "type": "array", "items": { "type": "string" } }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "vector": { "type": "object", "required": ["x", "y", "z"], "properties": { "x": { "type": "number" }, "y": { "type": "number" }, "z": { "type": "number" } }, "additionalProperties": false },
+    "bounds": { "type": "object", "required": ["origin", "extent", "sphereRadius"], "properties": { "origin": { "$ref": "#/$defs/vector" }, "extent": { "$ref": "#/$defs/vector" }, "sphereRadius": { "type": "number", "minimum": 0 } }, "additionalProperties": false },
+    "lod": { "type": "object", "required": ["index", "positions", "indices", "tangentX", "tangentZ", "uvChannels", "sections", "positionHash", "indexHash", "attributeHash"], "properties": { "index": { "type": "integer", "minimum": 0 }, "positions": { "type": "array", "items": { "$ref": "#/$defs/vector" } }, "indices": { "type": "array", "items": { "type": "integer", "minimum": 0 } }, "tangentX": { "type": "array", "items": { "$ref": "#/$defs/vector" } }, "tangentZ": { "type": "array", "items": { "$ref": "#/$defs/vector" } }, "uvChannels": { "type": "array", "items": { "type": "array", "items": { "type": "object", "required": ["u", "v"], "properties": { "u": { "type": "number" }, "v": { "type": "number" } }, "additionalProperties": false } } }, "sections": { "type": "array", "items": { "type": "object" } }, "positionHash": { "type": "string", "pattern": "^[0-9a-f]{64}$" }, "indexHash": { "type": "string", "pattern": "^[0-9a-f]{64}$" }, "attributeHash": { "type": "string", "pattern": "^[0-9a-f]{64}$" } }, "additionalProperties": false },
+    "collision": { "type": "object", "required": ["bodySetupExportIndex", "bodySetupObjectName", "convexHulls", "cookedPayloads", "taggedGeometryHash", "opaqueNativeHash", "offlineQueryCount", "offlineQueryFingerprint", "hasConsistentSimpleCollision"], "properties": { "bodySetupExportIndex": { "type": "integer", "minimum": 1 }, "bodySetupObjectName": { "type": "string" }, "convexHulls": { "type": "array", "items": { "type": "object" } }, "cookedPayloads": { "type": "array", "items": { "type": "object" } }, "taggedGeometryHash": { "type": "string", "pattern": "^[0-9a-f]{64}$" }, "opaqueNativeHash": { "type": "string", "pattern": "^[0-9a-f]{64}$" }, "offlineQueryCount": { "type": "integer", "minimum": 0 }, "offlineQueryFingerprint": { "type": "string", "pattern": "^[0-9a-f]{64}$" }, "hasConsistentSimpleCollision": { "type": "boolean" } }, "additionalProperties": false }
+  }
+}

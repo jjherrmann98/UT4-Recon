@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ut4recon.local/schemas/bsp-map-ir.schema.json",
+  "title": "UT4Recon BSP map IR",
+  "type": "object",
+  "required": ["schemaVersion", "profile", "virtualPath", "sourceFileSha256", "models", "diagnostics"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "profile": { "const": "ut4-4.15-bsp-windows-v1" },
+    "virtualPath": { "type": "string" },
+    "sourceFileSha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "models": { "type": "array", "items": { "type": "object" } },
+    "diagnostics": { "type": "array", "items": { "type": "string" } }
+  },
+  "additionalProperties": false
+}

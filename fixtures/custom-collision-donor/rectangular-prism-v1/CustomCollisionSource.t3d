@@ -1,0 +1,85 @@
+Begin Map Name=/Game/UT4ReconDonor/CustomCollisionDonor
+   Begin Level NAME=PersistentLevel
+      Begin Actor Class=/Script/Engine.BlockingVolume Name=UT4ReconCollisionBoxTemplate
+         Begin Object Class=/Script/Engine.BrushComponent Name=BrushComponent0
+         End Object
+         Begin Object Name=BrushComponent0
+            RelativeLocation=(X=0,Y=0,Z=0)
+            ComponentTags(0)="UT4RECON_COLLISION_BOX_TEMPLATE:v1"
+         End Object
+         bActorEnableCollision=True
+         Tags(0)="UT4RECON_COLLISION_BOX_TEMPLATE:v1"
+         ActorLabel="[Exact editable] Add Collision Box template"
+         BrushType=Brush_Add
+         Begin Brush Name=UT4ReconCollisionBoxTemplate_Model
+            Begin PolyList
+               Begin Polygon Flags=0 LightMapScale=32
+                  Origin -120.000000,-120.000000,-50.000000
+                  Normal -1.000000,+0.000000,+0.000000
+                  TextureU +0.000000,+1.000000,+0.000000
+                  TextureV +0.000000,+0.000000,-1.000000
+                  Vertex -120.000000,-120.000000,-50.000000
+                  Vertex -120.000000,-120.000000,+50.000000
+                  Vertex -120.000000,+120.000000,+50.000000
+                  Vertex -120.000000,+120.000000,-50.000000
+               End Polygon
+               Begin Polygon Flags=0 LightMapScale=32
+                  Origin +120.000000,+120.000000,-50.000000
+                  Normal +1.000000,+0.000000,+0.000000
+                  TextureU +0.000000,-1.000000,+0.000000
+                  TextureV +0.000000,+0.000000,-1.000000
+                  Vertex +120.000000,+120.000000,-50.000000
+                  Vertex +120.000000,+120.000000,+50.000000
+                  Vertex +120.000000,-120.000000,+50.000000
+                  Vertex +120.000000,-120.000000,-50.000000
+               End Polygon
+               Begin Polygon Flags=0 LightMapScale=32
+                  Origin +120.000000,-120.000000,-50.000000
+                  Normal +0.000000,-1.000000,+0.000000
+                  TextureU -1.000000,+0.000000,+0.000000
+                  TextureV +0.000000,+0.000000,-1.000000
+                  Vertex +120.000000,-120.000000,-50.000000
+                  Vertex +120.000000,-120.000000,+50.000000
+                  Vertex -120.000000,-120.000000,+50.000000
+                  Vertex -120.000000,-120.000000,-50.000000
+               End Polygon
+               Begin Polygon Flags=0 LightMapScale=32
+                  Origin -120.000000,+120.000000,-50.000000
+                  Normal +0.000000,+1.000000,+0.000000
+                  TextureU +1.000000,+0.000000,+0.000000
+                  TextureV +0.000000,+0.000000,-1.000000
+                  Vertex -120.000000,+120.000000,-50.000000
+                  Vertex -120.000000,+120.000000,+50.000000
+                  Vertex +120.000000,+120.000000,+50.000000
+                  Vertex +120.000000,+120.000000,-50.000000
+               End Polygon
+               Begin Polygon Flags=0 LightMapScale=32
+                  Origin -120.000000,+120.000000,+50.000000
+                  Normal +0.000000,+0.000000,+1.000000
+                  TextureU +1.000000,+0.000000,+0.000000
+                  TextureV +0.000000,+1.000000,+0.000000
+                  Vertex -120.000000,+120.000000,+50.000000
+                  Vertex -120.000000,-120.000000,+50.000000
+                  Vertex +120.000000,-120.000000,+50.000000
+                  Vertex +120.000000,+120.000000,+50.000000
+               End Polygon
+               Begin Polygon Flags=0 LightMapScale=32
+                  Origin -120.000000,-120.000000,-50.000000
+                  Normal +0.000000,+0.000000,-1.000000
+                  TextureU +1.000000,+0.000000,+0.000000
+                  TextureV +0.000000,-1.000000,+0.000000
+                  Vertex -120.000000,-120.000000,-50.000000
+                  Vertex -120.000000,+120.000000,-50.000000
+                  Vertex +120.000000,+120.000000,-50.000000
+                  Vertex +120.000000,-120.000000,-50.000000
+               End Polygon
+            End PolyList
+         End Brush
+         Brush=Model'UT4ReconCollisionBoxTemplate_Model'
+         BrushComponent=BrushComponent'BrushComponent0'
+         RootComponent=BrushComponent'BrushComponent0'
+      End Actor
+   End Level
+Begin Surface
+End Surface
+End Map

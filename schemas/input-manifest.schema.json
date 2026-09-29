@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ut4recon.local/schemas/input-manifest-v1.json",
+  "title": "UT4 reconstruction input manifest",
+  "type": "object",
+  "required": ["schemaVersion", "tool", "createdUtc", "profile", "pak", "extractedFiles"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "tool": {
+      "type": "object", "required": ["name", "version"],
+      "properties": { "name": { "type": "string" }, "version": { "type": "string" } }, "additionalProperties": false
+    },
+    "createdUtc": { "type": "string", "format": "date-time" },
+    "profile": { "const": "ut4-4.15-windows-no-editor-v1" },
+    "pak": {
+      "type": "object", "required": ["sourcePath", "mountPoint", "isEncrypted", "source", "unrealPak", "entries"],
+      "properties": {
+        "sourcePath": { "type": "string" }, "mountPoint": { "type": "string" }, "isEncrypted": { "type": "boolean" },
+        "source": { "$ref": "#/$defs/file" }, "unrealPak": { "$ref": "#/$defs/file" }, "editor": { "oneOf": [{ "$ref": "#/$defs/file" }, { "type": "null" }] },
+        "entries": { "type": "array", "items": { "$ref": "#/$defs/entry" } }
+      },
+      "additionalProperties": false
+    },
+    "extractedFiles": { "type": "array", "items": { "$ref": "#/$defs/file" } }
+  },
+  "$defs": {
+    "file": {
+      "type": "object", "required": ["path", "size", "sha256"],
+      "properties": { "path": { "type": "string" }, "size": { "type": "integer", "minimum": 0 }, "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" } }, "additionalProperties": false
+    },
+    "entry": {
+      "type": "object", "required": ["sequence", "path", "offset", "size", "storedSize", "compressionMethod", "isEncrypted", "sha256"],
+      "properties": {
+        "sequence": { "type": "integer", "minimum": 0 }, "path": { "type": "string" }, "offset": { "type": "integer", "minimum": 0 },
+        "size": { "type": "integer", "minimum": 0 }, "storedSize": { "type": "integer", "minimum": 0 }, "compressionMethod": { "type": "string" },
+        "isEncrypted": { "type": "boolean" }, "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ut4recon.local/schemas/bsp-workspace-index.schema.json",
+  "title": "UT4Recon BSP workspace index",
+  "type": "object",
+  "required": ["schemaVersion", "profile", "entries"],
+  "properties": {
+    "schemaVersion": { "const": 1 }, "profile": { "const": "ut4-4.15-bsp-windows-v1" },
+    "entries": { "type": "array", "items": { "type": "object", "required": ["packagePath", "internalPath", "workspacePath", "status", "diagnostics"], "properties": {
+      "packagePath": { "type": "string" }, "internalPath": { "type": "string" }, "workspacePath": { "type": ["string", "null"] }, "status": { "type": "string" }, "diagnostics": { "type": "array", "items": { "type": "string" } }
+    }, "additionalProperties": false } }
+  },
+  "additionalProperties": false
+}
