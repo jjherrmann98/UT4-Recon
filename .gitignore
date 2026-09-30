@@ -33,6 +33,9 @@ research/
 *.umap
 *.zip
 
+# This managed source project shares the .Pak suffix with cooked package files.
+!src/Ut4Recon.Pak/
+
 # The two small, project-authored cooked templates are deliberately versioned.
 !fixtures/collision-box-template/ut4-4.15-windows-no-editor-v1/CollisionBoxTemplate.umap
 !fixtures/custom-collision-donor/rectangular-prism-v1/CustomCollisionDonor.umap
