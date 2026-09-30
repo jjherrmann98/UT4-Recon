@@ -37,8 +37,10 @@
     <Compile Remove="BehaviorTests.cs" />
     <Compile Remove="BspTests.cs" />
     <Compile Remove="CookedMapFixtureTests.cs" />
+    <Compile Remove="CollisionBoxTemplateTests.cs" />
     <Compile Remove="EditorProtocolTests.cs" />
     <Compile Remove="GeometryTests.cs" />
+    <Compile Remove="PropertyPatcherTests.cs" />
   </ItemGroup>
 
 </Project>
