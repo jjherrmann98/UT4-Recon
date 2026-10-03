@@ -61,4 +61,3 @@ if (-not (Test-Path -LiteralPath $installer -PathType Leaf)) {
 $hash = (Get-FileHash -LiteralPath $installer -Algorithm SHA256).Hash
 Write-Host "Installer: $installer"
 Write-Host "SHA-256: $hash"
-

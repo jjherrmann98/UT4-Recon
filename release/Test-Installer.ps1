@@ -99,4 +99,3 @@ catch {
     Write-Host "Installer smoke test artifacts retained at: $test"
     throw
 }
-

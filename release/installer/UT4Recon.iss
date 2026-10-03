@@ -182,4 +182,3 @@ begin
   if EditorIsRunning() then
     Result := 'Close UT4 Editor (UE4Editor.exe) before installing or updating UT4 Recon.';
 end;
-
