@@ -108,9 +108,10 @@ winget install --id JRSoftware.InnoSetup --exact
 
 The smoke test installs into a temporary synthetic editor tree, verifies every
 portable payload file and the native plugin, launches the installed CLI,
-confirms that a mismatched editor API is rejected, and verifies uninstall
-cleanup. Attach the tested setup executable alongside the portable ZIP and add
-its SHA-256 to the release notes.
+confirms that a mismatched editor API is rejected, verifies the working-folder
+layout, and verifies uninstall cleanup without deleting user data. Attach the
+tested setup executable alongside the portable ZIP and add its SHA-256 to the
+release notes.
 
 ## 5. Suggested release notes
 

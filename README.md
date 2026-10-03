@@ -134,16 +134,19 @@ copying the native plugin.
 1. Download `UT4Recon-Setup-0.1.0-alpha.1.exe` from the GitHub release.
 2. Close UT4 Editor and run Setup. Windows SmartScreen may warn because this
    early installer is not code-signed.
-3. Select the UT4 Editor root when prompted. Setup verifies compatible API
-   changelist `3525109`, installs the editor plugin, and places the backend,
-   documentation, schemas, and certified templates under your local user
-   profile.
-4. Open **UT4 Recon command prompt** from the Start Menu and create the recovery
-   project and workspace using the commands below.
+3. Review the application destination, which defaults to **Program Files**.
+4. Confirm the detected UT4 Editor root or select it manually. Setup verifies
+   compatible API changelist `3525109` before installing the editor plugin.
+5. Review the working folder, which defaults to **Public Documents\UT4 Recon**.
+   Setup creates **Input Paks**, **Recovery Projects**, and **Built Paks** inside
+   it.
+6. Place a copy of the cooked map pak in **Input Paks**, open **UT4 Recon command
+   prompt** from the Start Menu, and create the recovery project and workspace
+   using the commands below.
 
 Setup appears in Windows **Installed apps** and removes both the application
 payload and editor plugin when uninstalled. It does not remove recovery
-projects or generated paks.
+projects, input maps, or generated paks from the working folder.
 
 ### Portable installation
 

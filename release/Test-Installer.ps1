@@ -15,6 +15,7 @@ $test = [IO.Path]::GetFullPath($TestRoot)
 if (Test-Path -LiteralPath $test) { throw "Test root already exists: $test" }
 
 $app = Join-Path $test 'app'
+$data = Join-Path $test 'user-data'
 $editor = Join-Path $test 'editor'
 $modules = Join-Path $editor 'Engine\Binaries\Win64\UE4Editor.modules'
 New-Item -ItemType Directory -Path (Split-Path $modules) -Force | Out-Null
@@ -30,14 +31,23 @@ function Invoke-Process([string] $FilePath, [string[]] $Arguments, [int[]] $Expe
 
 try {
     Invoke-Process $installerFull @(
-        '/VERYSILENT', '/SUPPRESSMSGBOXES', '/NORESTART',
-        "/DIR=$app", "/EDITORROOT=$editor", "/LOG=$(Join-Path $test 'install.log')"
+        '/VERYSILENT', '/SUPPRESSMSGBOXES', '/NORESTART', '/CURRENTUSER',
+        "/DIR=$app", "/EDITORROOT=$editor", "/DATAROOT=$data", "/LOG=$(Join-Path $test 'install.log')"
     ) | Out-Null
 
     $installedCli = Join-Path $app 'cli\Ut4Recon.Cli.exe'
     $installedPlugin = Join-Path $editor 'Engine\Plugins\Marketplace\Ut4ReconEditor\Binaries\Win64\UE4Editor-Ut4ReconEditor.dll'
     foreach ($path in @($installedCli, $installedPlugin, (Join-Path $app 'unins000.exe'))) {
         if (-not (Test-Path -LiteralPath $path -PathType Leaf)) { throw "Installed file is missing: $path" }
+    }
+    foreach ($directory in @('Input Paks', 'Recovery Projects', 'Built Paks')) {
+        if (-not (Test-Path -LiteralPath (Join-Path $data $directory) -PathType Container)) {
+            throw "Working directory is missing after install: $directory"
+        }
+    }
+    $inputInstructions = Join-Path $data 'Input Paks\README.txt'
+    if (-not (Test-Path -LiteralPath $inputInstructions -PathType Leaf)) {
+        throw 'Input Paks instructions were not installed.'
     }
 
     foreach ($sourceFile in Get-ChildItem -LiteralPath $payload -File -Recurse) {
@@ -63,8 +73,8 @@ try {
     Set-Content -LiteralPath $badModules -Encoding ascii -Value '{"CompatibleChangelist":1234567}'
     $badApp = Join-Path $test 'bad-app'
     $badExit = Invoke-Process $installerFull @(
-        '/VERYSILENT', '/SUPPRESSMSGBOXES', '/NORESTART',
-        "/DIR=$badApp", "/EDITORROOT=$badEditor", "/LOG=$(Join-Path $test 'wrong-version.log')"
+        '/VERYSILENT', '/SUPPRESSMSGBOXES', '/NORESTART', '/CURRENTUSER',
+        "/DIR=$badApp", "/EDITORROOT=$badEditor", "/DATAROOT=$(Join-Path $test 'bad-data')", "/LOG=$(Join-Path $test 'wrong-version.log')"
     ) @(1, 2, 5)
     if ($badExit -eq 0 -or (Test-Path -LiteralPath (Join-Path $badApp 'cli\Ut4Recon.Cli.exe'))) {
         throw 'Installer did not reject an incompatible editor.'
@@ -77,8 +87,8 @@ try {
         Start-Sleep -Milliseconds 500
         $runningApp = Join-Path $test 'running-editor-app'
         $runningExit = Invoke-Process $installerFull @(
-            '/VERYSILENT', '/SUPPRESSMSGBOXES', '/NORESTART',
-            "/DIR=$runningApp", "/EDITORROOT=$editor", "/LOG=$(Join-Path $test 'running-editor.log')"
+            '/VERYSILENT', '/SUPPRESSMSGBOXES', '/NORESTART', '/CURRENTUSER',
+            "/DIR=$runningApp", "/EDITORROOT=$editor", "/DATAROOT=$(Join-Path $test 'running-data')", "/LOG=$(Join-Path $test 'running-editor.log')"
         ) @(1, 2, 5, 7)
         if ($runningExit -eq 0 -or (Test-Path -LiteralPath (Join-Path $runningApp 'cli\Ut4Recon.Cli.exe'))) {
             throw 'Installer did not refuse to update files while UE4Editor.exe was running.'
@@ -92,6 +102,7 @@ try {
     if (Test-Path -LiteralPath $installedPlugin) { throw 'Uninstall left the editor plugin behind.' }
     if (Test-Path -LiteralPath $installedCli) { throw 'Uninstall left the application payload behind.' }
     if (-not (Test-Path -LiteralPath $modules)) { throw 'Uninstall modified files owned by the editor.' }
+    if (-not (Test-Path -LiteralPath $inputInstructions)) { throw 'Uninstall removed the user working folders.' }
 
     Write-Host "Installer smoke test passed: $test"
 }
