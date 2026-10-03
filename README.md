@@ -129,16 +129,33 @@ copying the native plugin.
 
 ## Installing the binary release
 
-1. Download `ut4recon-0.1.0-alpha.1-win-x64.zip` from the GitHub release and
-   extract it to an ordinary writable folder.
-2. Close UT4 Editor.
-3. Open PowerShell in the extracted folder and run:
+### Setup installer
+
+1. Download `UT4Recon-Setup-0.1.0-alpha.1.exe` from the GitHub release.
+2. Close UT4 Editor and run Setup. Windows SmartScreen may warn because this
+   early installer is not code-signed.
+3. Select the UT4 Editor root when prompted. Setup verifies compatible API
+   changelist `3525109`, installs the editor plugin, and places the backend,
+   documentation, schemas, and certified templates under your local user
+   profile.
+4. Open **UT4 Recon command prompt** from the Start Menu and create the recovery
+   project and workspace using the commands below.
+
+Setup appears in Windows **Installed apps** and removes both the application
+payload and editor plugin when uninstalled. It does not remove recovery
+projects or generated paks.
+
+### Portable installation
+
+Download `ut4recon-0.1.0-alpha.1-win-x64.zip` instead if you prefer a portable
+copy. Extract it to an ordinary writable folder, close UT4 Editor, open
+PowerShell in the extracted folder, and run:
 
    ```powershell
    .\Install-EditorPlugin.ps1 -EditorRoot "E:\path\to\UnrealTournamentEditor"
    ```
 
-4. Create the recovery project and editor workspace:
+Then create the recovery project and editor workspace:
 
    ```powershell
    .\cli\Ut4Recon.Cli.exe create-project "C:\Maps\Map.pak" `
@@ -153,11 +170,11 @@ copying the native plugin.
    .\cli\Ut4Recon.Cli.exe open-editor-workspace "C:\UT4Recon\Map\EditorWorkspace"
    ```
 
-5. Open **Window > UT4 Recon**, follow the numbered workflow at the top of the
+Open **Window > UT4 Recon**, follow the numbered workflow at the top of the
    panel, and read the concise capability description before editing an object.
-6. Save the level, export the saved map from the panel, validate the changes,
+Save the level, export the saved map from the panel, validate the changes,
    and build a distinctly named pak.
-7. Install the pak in the client and playtest the intended change.
+Install the pak in the client and playtest the intended change.
 
 The release also contains `PROTOTYPE-README.md` with a compact checklist. The
 [technical reference](docs/TECHNICAL_REFERENCE.md) documents CLI commands,

@@ -6,8 +6,10 @@ and was built and tested with UT4 Editor
 updates that retain the stock UT4 4.15 package format are expected to work but
 are not all individually certified.
 
-1. Close UT4 Editor and run `Install-EditorPlugin.ps1 -EditorRoot <path>` from
-   PowerShell.
+1. If you used `UT4Recon-Setup-<version>.exe`, close UT4 Editor, select its root
+   in Setup, and then open **UT4 Recon command prompt** from the Start Menu. For
+   the portable ZIP, run `Install-EditorPlugin.ps1 -EditorRoot <path>` from
+   PowerShell instead.
 2. Run `cli\Ut4Recon.Cli.exe create-project <map.pak> --output <project>
    --editor <editor-root>`.
 3. Run `cli\Ut4Recon.Cli.exe create-editor-project <project> --output

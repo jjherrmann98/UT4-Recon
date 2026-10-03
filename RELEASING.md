@@ -95,6 +95,23 @@ Do not commit the zip to the repository. The zip contains the self-contained
 CLI, editor plugin binary, schemas, certified project-authored templates,
 license, notices, and documentation.
 
+Build the setup executable from that exact portable payload with Inno Setup 6:
+
+```powershell
+winget install --id JRSoftware.InnoSetup --exact
+.\release\Build-Installer.ps1 `
+  -PayloadRoot ".\artifacts\release\ut4recon-0.1.0-alpha.1-win-x64"
+.\release\Test-Installer.ps1 `
+  -Installer ".\artifacts\release\UT4Recon-Setup-0.1.0-alpha.1.exe" `
+  -PayloadRoot ".\artifacts\release\ut4recon-0.1.0-alpha.1-win-x64"
+```
+
+The smoke test installs into a temporary synthetic editor tree, verifies every
+portable payload file and the native plugin, launches the installed CLI,
+confirms that a mismatched editor API is rejected, and verifies uninstall
+cleanup. Attach the tested setup executable alongside the portable ZIP and add
+its SHA-256 to the release notes.
+
 ## 5. Suggested release notes
 
 ```text
